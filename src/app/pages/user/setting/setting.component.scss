@@ -1,0 +1,13 @@
+.upload-area {
+  border: 1px dashed;
+  min-height: 200px;
+  transition: all 0.5s;
+  pointer-events: all;
+  &.enter {
+    background-color: #ddd;
+  }
+}
+
+.logo{
+  border-radius:100px;
+}

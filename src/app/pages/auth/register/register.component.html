@@ -1,0 +1,68 @@
+<form [formGroup]="form" (ngSubmit)="onSubmit()">
+    <div class="row g-3">
+        <div class="col-6">
+            <input type="text" class="form-control py-2" placeholder="First name" aria-label="First name"
+                formControlName="firstName" [ngClass]="!firstName?.valid && firstName?.touched ? 'is-invalid' : ''">
+            <small class="text-danger" *ngIf="!firstName?.valid && firstName?.touched">required field</small>
+        </div>
+        <div class="col-6">
+            <input type="text" class="form-control py-2" placeholder="Last name" aria-label="Last name"
+                formControlName="lastName" [ngClass]="!lastName?.valid && lastName?.touched ? 'is-invalid' : ''">
+            <small class="text-danger" *ngIf="!lastName?.valid && lastName?.touched">required field.</small>
+        </div>
+        <div class="col-8">
+            <input type="text" class="form-control py-2" placeholder="City" aria-label="City" formControlName="city"
+                [ngClass]="!city?.valid && city?.touched ? 'is-invalid' : ''">
+            <small class="text-danger" *ngIf="!city?.valid && city?.touched">required field.</small>
+        </div>
+        <div class="col-4">
+            <input type="text" class="form-control py-2" placeholder="Mobile number" aria-label="Phone number"
+                formControlName="phone"
+                [ngClass]="!phone?.valid && phone?.touched ? 'is-invalid' : ''">
+            <small class="text-danger" *ngIf="!phone?.valid && phone?.touched">required field.</small>
+        </div>
+        <div class="col-12">
+            <input type="email" class="form-control py-2" placeholder="Email" aria-label="Email" formControlName="email"
+                [ngClass]="!email?.valid && email?.touched ? 'is-invalid' : ''">
+            <small class="text-danger" *ngIf="!email?.valid && email?.touched">required field.</small>
+        </div>
+        <div class="col-6">
+            <input type="password" class="form-control py-2" placeholder="Password" aria-label="Password"
+                formControlName="password" [ngClass]="!password?.valid && password?.touched ? 'is-invalid' : ''">
+            <small class="text-danger" *ngIf="!password?.valid && password?.touched">required field.</small>
+        </div>
+        <div class="col-6">
+            <input type="password" class="form-control py-2" placeholder="Confirm Password"
+                aria-label="Confirm Password" formControlName="confirmPassword"
+                [ngClass]="!confirmPassword?.valid && confirmPassword?.touched ? 'is-invalid' : ''">
+            <small class="text-danger" *ngIf="!confirmPassword?.valid && confirmPassword?.touched">required
+                field.</small>
+        </div>
+        <div class="col-12">
+            <div class="d-flex align-items-center">
+                <h6 class="mb-0 me-3">Gender</h6>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="gender" formControlName="gender" id="male"
+                        value="male">
+                    <label class="form-check-label fw-semibold small" for="male">Male</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="gender" formControlName="gender" id="female"
+                        value="female">
+                    <label class="form-check-label fw-semibold small" for="female">Female</label>
+                </div>
+            </div>
+        </div>
+        <div class="col-12">
+            <button class="btn btn-primary" type="submit" [disabled]="isSubmit || !form.valid">
+                <ng-container *ngIf="isSubmit">
+                    <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                    Loading...
+                </ng-container>
+                <ng-container *ngIf="!isSubmit">
+                    Create Account
+                </ng-container>
+            </button>
+        </div>
+    </div>
+</form>

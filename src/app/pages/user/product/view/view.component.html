@@ -1,0 +1,150 @@
+<ng-container *ngIf="$product | async as product">
+ 
+  <div class="container-fluid">
+    <div class="row gy-3">
+      <div class="col-12">
+        <div class="card border-0 shadow-sm fw-medium">
+          <div class="card-body">
+            <div class="row p-4 gx-5">
+              <div class="col-5">
+                <div class="d-flex align-items-center gap-4">
+                  <div class="d-flex flex-column gap-4 align-items-center">
+                    <ng-container *ngFor="let image of product.images">
+                      <img (click)="product.thumbnail =image" [src]="image"
+                        [ngClass]="{'border-primary': image === product.thumbnail}"
+                        alt="loading" class="mx-auto" height="100" [style.cursor]="'pointer'" width="80"
+                        class="border p-2" />
+                    </ng-container>
+                  </div>
+                  <div class="flex-grow-0"><img [src]="product.thumbnail"
+                       loading="lazy" alt="loading" class="img-fluid flex-grow-1">
+                  </div>
+                </div>
+              </div>
+              <div class="col-7">
+                <div class="d-flex align-items-center justify-content-between mb-4">
+                  <h5 class="text-capitalize mb-0">{{product.title}}</h5><button placement="left"
+                    ngbTooltip="Add to the Wishlist" class="btn text-danger ms-3 p-0"><fa-icon
+                      icon="heart"></fa-icon></button>
+                </div>
+                <h6><fa-icon class="text-success" icon="tag"></fa-icon> 1 offer Available for you</h6>
+                <p class="text-black-50">Get Extra 10 percent off on Prepaid Orders
+                  Use code <span class="text-black">"MYSHOP10"</span> Min. Cart Value ₹149 | Max. Discount ₹1000 T&C</p>
+                <ul class="list-inline text-black-50">
+                  <li><fa-icon class="text-success" icon="check"></fa-icon> Prints & Patterns : Printed</li>
+                  <li><fa-icon class="text-success" icon="check"></fa-icon> Easy Returns & Replacement</li>
+                  <li><fa-icon class="text-success" icon="check"></fa-icon> COD Available</li>
+                  <li><fa-icon class="text-success" icon="check"></fa-icon> Free Shipping</li>
+                  <li><fa-icon class="text-success" icon="check"></fa-icon> Delivered 2-5 Business Days</li>
+                  <li><fa-icon class="text-success" icon="check"></fa-icon> Payment Options: (Credit Card , Debit Card ,
+                    Net Banking ,
+                    Wallets , COD)</li>
+                </ul>
+                <div class="d-flex align-items-center flex-wrap mb-4">
+                  <button class="btn btn-outline-secondary rounded-0" (click)="sum('inc',input)">+</button>
+                  <input [style.width]="'100px'"
+                    class="form-control text-center rounded-0 border-secondary border-end-0 border-start-0"
+                    type="number" min="1" #input value="1" />
+                  <button class="btn btn-outline-secondary rounded-0" (click)="sum('dec',input)">-</button>
+                </div>
+                <div class="mb-4"> <button class="btn btn-primary" (click)="addToCart($event,product?._id)"><fa-icon
+                      icon="cart-plus"></fa-icon> Add To
+                    Cart</button>
+                  <button class="btn btn-primary ms-3" (click)="openPaymentModal()">Buy Now</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-12 mt-4 pb-4">
+        <div class="card shadow-sm border-0">
+          <div class="card-header bg-white pb-0">
+            <ul ngbNav #nav="ngbNav" [(activeId)]="active" class="nav-tabs border-0">
+              <li [ngbNavItem]="1">
+                <a ngbNavLink class="pt-3 pb-2 me-3 text-decoration-none d-inline-block border-0">Description</a>
+                <ng-template ngbNavContent>
+                  <div class="text-black-50" [innerHTML]="product.description">
+                  </div>
+                </ng-template>
+              </li>
+              <li [ngbNavItem]="2">
+                <a ngbNavLink class="pt-3 pb-2 d-inline-block border-0">Review and Rating</a>
+                <ng-template ngbNavContent>
+                  <div class="text-center" *ngIf="user?._id && !review">There is no review please add one! <div>
+                      <ng-container *ngIf="user?._id && !review">
+                        <button class="btn btn-primary mt-3" (click)="addReview()">Add Review</button>
+                      </ng-container>
+                      <ng-container *ngIf="!user?._id">
+                        <p>Please login to add review.</p>
+                      </ng-container>
+                    </div>
+                  </div>
+                  <form #form="ngForm" *ngIf="review">
+                    <div class="row mb-3">
+                      <div class="col-sm-12 d-flex align-items-center justify-content-between">
+                        <label for="message" class="col-form-label fw-semibold">Your Review</label>
+                        <ngb-rating [(rate)]="currentRate" class="text-danger" [max]="5" class="fs-4"></ngb-rating>
+                      </div>
+                      <div class="col-sm-12">
+                        <textarea class="form-control mb-3" row="8" id="message" placeholder="Enter your review!"
+                          [style.resize]="'none'"></textarea>
+                      </div>
+                    </div>
+                    <div class="text-end">
+                      <button class="btn btn-primary">Add Review</button>
+                    </div>
+                  </form>
+                </ng-template>
+              </li>
+              <li [ngbNavItem]="3">
+                <a ngbNavLink class="pt-3 pb-2 me-3 text-decoration-none d-inline-block border-0">Specification</a>
+                <ng-template ngbNavContent>
+                  <div class="table-responsive">
+                    <table class="table table-borderless">
+                      <tbody>
+                        <tr>
+                          <th class="w-25">Brand :</th>
+                          <td class="w-75 text-capitalize">{{product.brand}}</td>
+                        </tr>
+                        <tr>
+                          <th class="w-25">Ideal For :</th>
+                          <td class="w-75 text-capitalize">{{product.ideal}}</td>
+                        </tr>
+                        <tr>
+                          <th class="w-25">Prints & Patterns</th>
+                          <td class="w-75 text-capitalize">Checkered</td>
+                        </tr>
+                        <tr>
+                          <th class="w-25">Wash Care :</th>
+                          <td class="w-75 text-capitalize">{{product.washType}}</td>
+                        </tr>
+                        <tr>
+                          <th class="w-25">Color Family :</th>
+                          <td class="w-75 text-capitalize">{{product.color}}</td>
+                        </tr>
+                        <tr>
+                          <th class="w-25">Sleeves Length :</th>
+                          <td class="w-75 text-capitalize">{{product.sleevesLength
+                            }}</td>
+                        </tr>
+                        <tr>
+                          <th class="w-25">Wear Type :</th>
+                          <td class="w-75 text-capitalize">{{product.wearType}}</td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </ng-template>
+              </li>
+            </ul>
+          </div>
+          <div class="card-body">
+            <div [ngbNavOutlet]="nav"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</ng-container>

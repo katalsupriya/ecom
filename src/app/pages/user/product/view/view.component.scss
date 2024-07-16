@@ -1,0 +1,49 @@
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+input[type=number] {
+  -moz-appearance: textfield;
+}
+
+.rating{
+  color:white;
+  transition: all 0.5s;
+
+  fa-icon::ng-deep svg{
+    stroke-width: 34px;
+    stroke: rgb(240, 240, 37);
+  }
+
+  &:hover{
+    fa-icon::ng-deep svg{
+      stroke-width: 0;
+      stroke: inherit;
+    }
+    color:rgb(240, 240, 37);
+  }
+}
+
+.tab-item{
+  background-color:transparent;
+  border-color:transparent
+}
+
+.nav-tabs{
+  [aria-selected="true"]{
+    color:rgb(32, 101, 209);
+    border-bottom: 1px solid rgb(32,101,209) !important;
+  }
+  [aria-selected="false"]{
+    color:inherit;
+  }
+.nav-link{
+  background-color: inherit;
+  &:hover{
+    border:0;
+  }
+}
+}

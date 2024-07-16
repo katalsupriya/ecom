@@ -1,0 +1,130 @@
+<div class="container-fluid">
+  <div class="row ms-lg-3">
+    <div class="col-12 pb-5">
+      <div class="d-flex align-items-center justify-content-between py-3">
+        <h3>Product List</h3>
+        <!-- <button type="button" routerLink="./add-product" class="btn btn-primary">+ Add product</button> -->
+        <button type="button" (click)="addProduct()" class="btn btn-primary">+ Add product</button>
+      </div>
+    </div>
+    <div class="col-12 pb-5">
+      <h3>Filter</h3>
+      <div class="d-flex gap-4 flex-wrap"> <button class="btn btn-primary expandAll" (click)="a.expandAll();">Expand
+          All</button> <button class="btn btn-primary" (click)="a.collapseAll();">Collapse All</button></div>
+    </div>
+    <div class="col-3">
+      <ngb-accordion #a="ngbAccordion" activeIds="ngb-panel-0">
+        <ngb-panel title="Categories">
+          <ng-template ngbPanelContent>
+            <ul class="list-unstyled">
+              <li class="form-check"><input id="electronic" class="form-check-input" type="radio" name="category"><label
+                  for="electronic" class="form-check-label">Electronic</label></li>
+              <li class="form-check"><input id="fashion" class="form-check-input" type="radio" name="category"><label
+                  class="form-check-label" for="fashion">Fashion</label></li>
+              <li class="form-check"><input class="form-check-input" id="bag" type="radio" name="category"><label
+                  for="bag" class="form-check-label">Bag</label></li>
+              <li class="form-check"><input id="sports" class="form-check-input" type="radio" name="category"><label
+                  class="form-check-label" for="sports">Sports</label></li>
+            </ul>
+          </ng-template>
+        </ngb-panel>
+        <ngb-panel title="Ideal For">
+          <ng-template ngbPanelContent>
+            <ul class="list-unstyled">
+              <li class="form-check"><input id="men" class="form-check-input" value="men" type="radio"
+                  name="gender"><label for="men" class="form-check-label">Men</label></li>
+              <li class="form-check"><input id="women" class="form-check-input" value="women" type="radio"
+                  name="gender"><label class="form-check-label" for="women">Women</label></li>
+              <li class="form-check"><input class="form-check-input" id="boy" value="boy" type="radio"
+                  name="gender"><label for="boy" class="form-check-label">Boy</label></li>
+              <li class="form-check"><input id="girl" class="form-check-input" value="girl" type="radio"
+                  name="gender"><label class="form-check-label" for="girl">Girl</label></li>
+            </ul>
+          </ng-template>
+        </ngb-panel>
+        <ngb-panel title="Price">
+          <ng-template ngbPanelContent>
+            <label for="priceRange" class="form-label">Set Custom Price Range</label>
+            <div class="position-relative">
+              <input type="range" [(ngModel)]="range" (ngModelChange)="getPrice($event)" value="0" class="form-range"
+                min="0" max="100" step="1" id="priceRange">
+              <span class="position-absolute d-block bg-dark rounded" [style.pointerEvents]="'none'"
+                [style.width]="range+'%'" [style.height]="'6px'" [style.top]="'9px'"></span>
+            </div>
+            <div class="input-group" [style.width]="'120px'">
+              <span class="input-group-text" id="basic-addon1">&#8377;</span>
+              <input type="text" class="form-control" [value]="range * 1000" placeholder="Username"
+                aria-label="Username" aria-describedby="basic-addon1">
+            </div>
+          </ng-template>
+        </ngb-panel>
+        <ngb-panel title="Brand">
+          <ng-template ngbPanelContent>
+            <ul class="list-unstyled">
+              <li class="form-check"><input id="alisha" class="form-check-input" type="checkbox" value="alisha"><label
+                  class="form-check-label" id="alisha">Alisha</label></li>
+              <li class="form-check"><input id="balaCreation" class="form-check-input" type="checkbox"
+                  value="balaCreation"><label class="form-check-label" id="balaCreation">Bala Creation</label></li>
+              <li class="form-check"><input id="crepe" class="form-check-input" type="checkbox" value="crepe"><label
+                  class="form-check-label" id="crepe">Crepe</label></li>
+              <li class="form-check"><input id="fashionTrend" class="form-check-input" type="checkbox"
+                  value="fashionTrend"><label class="form-check-label" id="fashionTrend">Fashion Trend</label></li>
+              <li class="form-check"><input id="fashionMania" class="form-check-input" type="checkbox"
+                  value="fashionMania"><label class="form-check-label" id="fashionMania">Fashion Mania</label></li>
+              <li class="form-check"><input id="moris" class="form-check-input" type="checkbox"
+                  value="hana & morris"><label for="moris" class="form-check-label">Hana & Morris</label></li>
+              <li class="form-check"><input id="h&m" class="form-check-input" type="checkbox" value="h&m"><label
+                  class="form-check-label" for="h&m">H&M</label></li>
+              <li class="form-check"><input class="form-check-input" id="levish" type="checkbox" value="levish"><label
+                  for="levish" class="form-check-label">Levish</label></li>
+              <li class="form-check"><input class="form-check-input" id="nike" type="checkbox" value="nike"><label
+                  for="nike" class="form-check-label">Nike</label></li>
+              <li class="form-check"><input class="form-check-input" id="newEthic4u" type="checkbox"
+                  value="newEthic4u"><label for="newEthic4u" class="form-check-label">New Ethic 4 U</label></li>
+              <li class="form-check"><input id="zara" class="form-check-input" type="checkbox" value="zara"><label
+                  class="form-check-label" for="zara">Zara</label></li>
+            </ul>
+          </ng-template>
+        </ngb-panel>
+        <ngb-panel>
+          <ng-template ngbPanelTitle>
+            <span>AVAILABILITY</span>
+          </ng-template>
+          <ng-template ngbPanelContent>
+            <ul class="list-unstyled">
+              <li class="form-check"><input id="inStock" class="form-check-input" type="checkbox"><label for="inStock"
+                  class="form-check-label">In Stock</label></li>
+              <li class="form-check"><input id="outOfStock" class="form-check-input" type="checkbox"><label
+                  class="form-check-label" id="outOfStock">Out Of Stock</label></li>
+            </ul>
+          </ng-template>
+        </ngb-panel>
+      </ngb-accordion>
+    </div>
+    <div class="col-9">
+      <ng-container *ngIf="products$ | async as products">
+        <div class="row gy-3">
+          <ng-container *ngFor="let product of products.products">
+            <div class="col-4">
+              <div class="card h-100" aria-hidden="true">
+                <img loading="lazy" [src]="product.thumbnail" [style.aspect-ratio]="5/5.5"
+                  class="card-img-top opacity-100" alt="loading" aria-hidden="true">
+                <div class="card-body">
+                  <h5 class="card-title text-capitalize" [innerHTML]="product?.title | truncate :0:15"></h5>
+                  <p class="card-text" [innerHTML]="product?.description | truncate :0:100"></p>
+                  <a class="btn btn-primary" [routerLink]="['view',product._id]">View Product</a>
+                </div>
+              </div>
+            </div>
+          </ng-container>
+        </div>
+        <div class="py-5 d-flex align-items-center justify-between">
+          <app-pagination [pageSize]="maxProducts" [collectionSize]="products.total" [page]="page" [maxSize]="5"
+            (onPageChanged)="onPageChange($event)"></app-pagination>
+          <input class="text-center ms-auto" type="number" step="10"  min="10" max="50" maxlength="2"
+            [(ngModel)]="maxProducts" #maxView (ngModelChange)="onChange($event,maxView)">
+        </div>
+      </ng-container>
+    </div>
+  </div>
+</div>

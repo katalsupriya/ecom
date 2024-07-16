@@ -1,0 +1,54 @@
+//====================== dashboard ==========================// 
+.card {
+	.header-icon {
+		height: 60px;
+		width: 60px;
+		line-height: 60px;
+	}
+
+	&.android {
+		color: rgba(6, 27, 100, 1);
+		background-color: rgba(209, 233, 252, 1);
+
+		.header-icon {
+			background-image: linear-gradient(135deg, rgba(16, 57, 150, 0) 0%, rgba(16, 57, 150, 0.24) 100%);
+		}
+	}
+
+	&.mac {
+		color: rgba(4, 41, 122, 1);
+		background-color: rgba(208, 242, 255, 1);
+		.header-icon {
+            background-image: linear-gradient(135deg, rgba(12, 83, 183, 0) 0%, rgba(12, 83, 183, 0.24) 100%);
+		}
+	}
+
+	&.windows {
+		color: rgba(122, 79, 1, 1);
+		background-color: rgba(255, 247, 205, 1);
+		.header-icon {
+            background-image: linear-gradient(135deg, rgba(183, 129, 3, 0) 0%, rgba(183, 129, 3, 0.24) 100%);
+		}
+	}
+
+	&.bug {
+		color: rgba(122, 12, 46, 1);
+		background-color: rgba(255, 231, 217, 1);
+		.header-icon {
+			background-image: linear-gradient(135deg, rgba(183, 33, 54, 0) 0%, rgba(183, 33, 54, 0.24) 100%);
+		}
+	}
+}
+
+.vr{
+	width:1.5px;
+	height: 40px;
+}
+
+.dropdown-toggle::after{
+	display:none;
+}
+
+.btn:active{
+	border-color:transparent;
+}

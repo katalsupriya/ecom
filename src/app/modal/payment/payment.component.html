@@ -1,0 +1,19 @@
+
+<div class="modal-header">
+  <h4 class="modal-title">Buy</h4>
+  <button type="button" class="btn-close" aria-label="Close" (click)="activeModal.dismiss('Cross click')"></button>
+</div>
+<div class="modal-body">
+  <h2>Create Token Example</h2>
+  <ngx-stripe-card
+    [options]="cardOptions"
+    [elementsOptions]="elementsOptions"
+  ></ngx-stripe-card>
+  <button type="submit" (click)="createToken()">
+    CREATE TOKEN
+  </button>
+
+</div>
+<div class="modal-footer">
+  <button type="button" class="btn btn-outline-dark" (click)="activeModal.close('Close click')" >Close</button>
+</div>

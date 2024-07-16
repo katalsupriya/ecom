@@ -1,0 +1,19 @@
+<form #ngForm="ngForm" (ngSubmit)="onSubmit()">
+  <input type="file" (change)="handleFileInput($event)" />
+  <button >Upload</button>
+</form>
+<div *ngIf="image !== undefined && image.img">
+<div *ngFor="let source of image?.img">
+<img height="150px" width="150px" *ngIf="image !==undefined" [src]="source.source" alt="loading"/>
+</div>
+</div>
+
+
+<div class="uploader-progess d-flex justify-content-center align-items-center" *ngIf="isUploading">
+  <div class="position-relative">
+    <div class="spinner-border text-white" role="status">
+      <span class="visually-hidden">Loading...</span>
+    </div>
+    <div class="small mt-2 text-white">Uploading {{progress}}%</div>
+  </div>
+</div>

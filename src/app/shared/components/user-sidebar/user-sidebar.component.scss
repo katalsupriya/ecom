@@ -1,0 +1,30 @@
+/* ================================= */
+/* ======= components css========= */
+/* ================================= */
+
+.sidebar-content {
+	&.close {
+		left: -100%;
+		transition: all 0.4s;
+	}
+
+	.user-info{
+		background-color: rgba(145, 158, 171, 0.16);
+	}
+
+	ul{
+		.nav-item {
+			.nav-link {
+				color:rgba(99, 115, 129,1);
+                font-weight: 500;
+				&:hover{
+					background-color: rgba(145, 158, 171, 0.08);
+				}
+				&.active {
+					background-color: rgba(145, 158, 171, 0.16);
+				}
+			}
+		}
+	}
+
+}

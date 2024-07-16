@@ -1,0 +1,108 @@
+/* The following line can be included in a src/App.scss */
+/* ================================= */
+/* ======= Dashboard css========= */
+/* ================================= */
+/* ========== font family ======= */
+
+@import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Open+Sans:wght@400;500;600;700&family=Source+Sans+Pro:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400;1,600;1,700&family=Roboto:ital,wght@0,400;0,500;0,700;1,400;1,500;1,700&display=swap');
+
+// Variable overrides second
+$primary: rgba(32, 101, 209,1);
+$btn-font-weight:600;
+
+$font-family-base:'Roboto', sans-serif !default;
+$small-font-size: 0.875rem;
+$headings-font-weight: 600 !default;
+$headings-font-family: 'Open Sans', sans-serif !default;
+$input-font-weight:500!default;
+$input-font-family: $headings-font-family !default;
+$input-btn-focus-box-shadow:none !default;
+
+$display-font-sizes: (
+  1: 5rem,
+  2: 4.5rem,
+  3: 4rem,
+  4: 3.5rem,
+  5: 0.844,
+  6: 0.75rem
+);
+
+.fw-medium{
+  font-weight: 500;
+}
+
+/* ========== global custom classes ===== */
+.main {
+background-color: rgb(249, 250, 251);
+margin-left: 16.66666667%;
+}
+
+.btn-primary {
+ box-shadow: rgb(32 101 209 / 24%) 0px 8px 16px 0px;
+}
+
+aside{
+  overflow: auto;
+	transition: all 0.4s;
+	position: fixed;
+	left: 0;
+	top: 0;
+	width: inherit;
+	z-index: 1;
+	border-right:1px dashed rgba(145, 158, 171, 0.24);
+	background-color: rgb(249, 250, 251);
+}
+
+.offcanvas{
+  height:fit-content !important;
+}
+
+
+.loader-box {
+  height: 60px;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.loader {
+  .line {
+    animation: expand 1s ease-in-out infinite;
+    border-radius: 10px;
+    display: inline-block;
+    transform-origin: center center;
+    margin: 0 3px;
+    width: 1px;
+    height: 25px;
+
+    &:nth-child(1) {
+      background: rgba(0,0,0,1);
+    }
+
+    &:nth-child(2) {
+      animation-delay: 180ms;
+      background: rgba(0,0,0,1);
+    }
+
+    &:nth-child(3) {
+      animation-delay: 360ms;
+      background: rgba(0,0,0,1);
+    }
+
+    &:nth-child(4) {
+      animation-delay: 540ms;
+      background: rgba(0,0,0,1);
+    }
+  }
+
+  @keyframes expand {
+    0% {
+      transform: scale(1);
+    }
+
+    25% {
+      transform: scale(2);
+    }
+  }
+}

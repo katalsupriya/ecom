@@ -1,0 +1,79 @@
+<div class="modal-header">
+  <h4 class="modal-title">Create Product</h4>
+  <button type="button" class="btn-close" aria-label="Close" (click)="test()"></button>
+</div>
+<div class="modal-body">
+  <form [formGroup]="form" (ngSubmit)="onSubmit()">
+    <div class="row g-3">
+      <div class="col-12">
+        <label class="form-label fw-semibold" for="title">Title <span class="text-danger">*</span></label>
+        <input type="text" class="form-control py-2" placeholder="title" aria-label="title" formControlName="title"
+          id="title" required>
+        <small class="text-danger fw-semibold" *ngIf="title?.invalid && title?.touched">Title is required field.</small>
+      </div>
+      <div class="col-12">
+        <label class="form-label fw-semibold" for="brand">Brand <span class="text-danger">*</span></label>
+        <input type="text" class="form-control py-2" placeholder="brand" aria-label="brand" formControlName="brand"
+          id="brand">
+        <small class="text-danger fw-semibold" *ngIf="brand?.invalid && brand?.touched">Brand is required field.</small>
+      </div>
+      <div class="col-12">
+        <label class="form-label d-block fw-semibold" for="description">Description <span
+            class="text-danger">*</span></label>
+        <textarea class="form-control" placeholder="Please fill the description." id="description"
+          formControlName="description" rows="3"></textarea>
+        <small class="text-danger fw-semibold" *ngIf="description?.invalid && description?.touched">Description is
+          required field.</small>
+      </div>
+
+      <div class="col-12">
+        <label class="form-label fw-semibold" for="thumbnail">Thumbnail <span class="text-danger">*</span></label>
+        <input type="text" class="form-control py-2" placeholder="thumbnail" aria-label="thumbnail" formControlName="thumbnail"
+          id="thumbnail">
+        <small class="text-danger fw-semibold" *ngIf="thumbnail?.invalid && thumbnail?.touched">Thumbnail is required field.</small>
+      </div>
+
+      <div formArrayName="images" class="col-12">
+        <div *ngFor="let alias of images.controls; let i=index" class="mb-3">
+          <label class="form-label d-block fw-semibold" for="alias-{{ i }}">Images <span
+            class="text-danger">*</span></label>
+          <input id="alias-{{ i }}" type="text" [formControlName]="i" class="form-control" placeholder="URL">
+          <small class="text-danger fw-semibold" *ngIf="getValidity(i)">Path is required field.</small>
+        </div>
+        <button type="button" class="btn btn-primary btn-sm mt-2 d-block ms-auto" (click)="addAlias()">+ Add Another</button>
+      </div>
+
+      <div class="col-12">
+        <label class="form-label d-block fw-semibold" for="category">Categories <span
+            class="text-danger">*</span></label>
+        <select class="form-select" id="category" aria-label="Default select example"
+          formControlName="category" formControlName="category">
+          <option value="">Choose a category</option>
+          <option value="electronic">Electronic</option>
+          <option value="fashion">Fashion</option>
+          <option value="bag">bag</option>
+          <option value="sports">Sports</option>
+        </select>
+      </div>
+      <div class="col-12">
+        <label class="form-label fw-semibold" for="price">Price <span class="text-danger">*</span></label>
+        <input type="number" class="form-control py-2" placeholder="price" aria-label="price" formControlName="price"
+          id="price">
+        <small class="text-danger fw-semibold" *ngIf="price?.invalid && price?.touched">Price is required field.</small>
+      </div>
+      <div class="col-12">
+        <label class="form-label fw-semibold" for="quantity">Quantity <span class="text-danger">*</span></label>
+        <input type="number" class="form-control py-2" placeholder="quantity" aria-label="quantity"
+          formControlName="stock" id="quantity">
+        <small class="text-danger fw-semibold" *ngIf="stock?.invalid && stock?.touched">Quantity is required
+          field.</small>
+      </div>
+      <div class="col-12 text-end">
+        <button type="submit" class="btn btn-success" [disabled]="!form.valid">Submit</button>
+      </div>
+    </div>
+  </form>
+</div>
+<div class="modal-footer">
+  <button type="button" class="btn btn-outline-danger" (click)="activeModal.close('Close click')">Close</button>
+</div>

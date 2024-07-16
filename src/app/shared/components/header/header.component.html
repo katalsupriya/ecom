@@ -1,0 +1,82 @@
+<header>
+  <nav class="navbar navbar-expand-lg navbar-light bg-light py-3">
+    <div class="container-fluid">
+      <button class="navbar-toggler" type="button" (click)="isMenuCollapsed = !isMenuCollapsed">&#9776;</button>
+      <div [ngbCollapse]="isMenuCollapsed" class="collapse navbar-collapse">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item me-3">
+            <a class="nav-link fw-semibold mb-0" role="button" (click)="openTop(content)"><fa-icon [icon]="'search'"
+                size="xl"></fa-icon></a>
+          </li>
+          <li class="nav-item me-3" *ngIf="$cartCount | async as cart " ngbDropdown placement="bottom-end">
+            <a class="nav-link fw-semibold mb-0 position-relative" id="cart" ngbDropdownToggle role="button"><fa-icon [icon]="'shopping-bag'"
+                size="xl"></fa-icon>
+                <span class="position-absolute start-100 translate-middle badge rounded-pill bg-danger" [style.top]="'9px'">
+                 {{cart.total || 0}}
+                  <span class="visually-hidden">unread messages</span>
+                </span>
+              </a>
+              <div ngbDropdownMenu aria-labelledby="cart" class="dropdown-menu-end py-0"
+              [style.minHeight]="'300px'" [style.minWidth]="'300px'">
+              <h5 class="px-5 py-2 mb-0 border-bottom text-center">Cart</h5>
+              <div class="d-flex flex-column" *ngFor="let cart of cart.result" >
+                <ng-container *ngIf="cart.storedItem">
+                  <div class="d-flex align-items-center gap-2 p-3">
+                    <a [routerLink]="['/products/view',cart.storedItem._id]">
+                    <img [src]="cart.storedItem.images[0]" height="40" alt="loading"/>
+                    <small class="fw-semibold">{{cart.storedItem.title}}</small>
+                    </a>
+                    <button type="button" class="btn-close ms-auto"
+                      aria-label="Close"></button>
+                  </div>
+                </ng-container>
+
+                <ng-container *ngIf="!cart.storedItem">
+                 <p class="p-3">Cart is Empty.</p>
+                </ng-container>
+ 
+              </div>
+            </div>
+          </li>
+          <li class="nav-item me-3" ngbDropdown placement="bottom-end">
+            <a class="nav-link fw-semibold mb-0" id="notificationDropdown" ngbDropdownToggle role="button"><fa-icon
+                [icon]="'bell'" size="xl"></fa-icon></a>
+            <div ngbDropdownMenu aria-labelledby="notificationDropdown" class="dropdown-menu-end py-0"
+              [style.minHeight]="'300px'" [style.minWidth]="'300px'">
+              <h5 class="px-5 py-2 mb-0 border-bottom text-center">Notifications</h5>
+              <div class="d-flex flex-column">
+                <div class="d-flex align-items-center gap-2 p-3">
+                  <small class="fw-semibold">Your session has been start from <span class="text-danger">{{time |
+                      date:'shortTime'}}</span></small><button type="button" class="btn-close ms-auto"
+                    aria-label="Close"></button>
+                </div>
+              </div>
+            </div>
+          </li>
+          <li class="nav-item" ngbDropdown placement="bottom-end" *ngIf="user">
+            <a class="nav-link fw-semibold mb-0 text-capitalize" id="dropdownBasic" ngbDropdownToggle
+              role="button"><fa-icon [icon]="'user-circle'" size="xl"></fa-icon> {{user.firstName + ' ' +
+              user.lastName}}</a>
+            <div ngbDropdownMenu aria-labelledby="dropdownBasic" class="dropdown-menu-end">
+              <button ngbDropdownItem routerLink="/profile"><fa-icon [icon]="'id-card'" size="sm"></fa-icon>
+                Profile</button>
+              <button ngbDropdownItem routerLink="/settings"><fa-icon [icon]="'gear'" size="sm"></fa-icon>
+                Settings</button>
+              <button ngbDropdownItem (click)="logout()" type="button"><fa-icon [icon]="'sign-out'" size="sm"></fa-icon>
+                Logout</button>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+</header>
+
+<ng-template #content let-offcanvas>
+  <div class="offcanvas-header p-4">
+    <form class="d-flex flex-grow-1" role="search">
+      <input class="form-control me-2 border-0" type="search" placeholder="Search" aria-label="Search">
+      <button class="btn btn-primary" type="submit">Search</button>
+    </form>
+  </div>
+</ng-template>

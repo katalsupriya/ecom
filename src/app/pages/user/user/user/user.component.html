@@ -1,0 +1,64 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-12">
+      <div class="d-flex justify-content-between align-items-center">
+        <h2 class="mb-3">User List</h2>
+        <button class="btn btn-danger btn-sm" (click)="clearFilters()">Clear filters</button>
+      </div>
+      <div class="row mb-3">
+        <div class="col-6">
+          <label class="form-label fw-bold" for="searchUser">Search</label>
+          <input class="form-control" type="search" id="searchUser" placeholder="Search" aria-label="Search" #input
+            type="text" id="typeahead-format" type="text" class="form-control" class="form-control">
+        </div>
+        <div class="col-6">
+          <label class="form-label fw-bold" for="filter">Filter Data</label>
+          <select (change)="onChange(select)" class="form-select" id="filter" [(ngModel)]="select"
+            aria-label="Default select example">
+            <option selected value="">Filter by gender</option>
+            <option value="male">Male</option>
+            <option value="female">Female</option>
+          </select>
+        </div>
+      </div>
+      <table class="table table-striped">
+        <ng-container *ngIf="users?.length > 0">
+          <thead>
+            <tr>
+              <th scope="col" sortable="email" appSortable (sort)="onSort($event)">Email</th>
+              <th scope="col" sortable="city" appSortable (sort)="onSort($event)">City</th>
+              <th scope="col" sortable="phoneNumber" appSortable (sort)="onSort($event)">Phone</th>
+              <th scope="col" sortable="gender" appSortable (sort)="onSort($event)">Gender</th>
+              <th scope="col">Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let user of users">
+              <td><ngb-highlight [result]="user.email" [term]="input.value"></ngb-highlight></td>
+              <td><ngb-highlight [result]="user.city" [term]="input.value"></ngb-highlight></td>
+              <td><ngb-highlight [result]="user.phone" [term]="input.value"></ngb-highlight></td>
+              <td><ngb-highlight [result]="user.gender" [term]="input.value"></ngb-highlight></td>
+              <td><a class="btn btn-outline-danger" [routerLink]="['edit', user._id]"
+                  [queryParams]="{editMode:true}">Edit</a> <a class="btn btn-outline-primary mx-3"
+                  [routerLink]="['view', user._id]">View</a>
+                <a class="btn btn-danger" (click)="open(user)">Delete</a>
+              </td>
+            </tr>
+            <ng-container *ngIf="count > 10">
+              <app-pagination (onPageChanged)="onSkip($event)" [collectionSize]="count" [page]="page" [maxSize]="5"></app-pagination>
+              </ng-container>
+          </tbody>
+        </ng-container>
+        <ng-container *ngIf="users?.length === 0">
+          <div>No users found.</div>
+        </ng-container>
+      </table>
+    </div>
+  </div>
+</div>
+
+<div *ngIf="isSuccess" class="position-fixed top-0 end-0 shadow m-3">
+  <ngb-toast [class.bg-success]="isSuccess" (hidden)="isSuccess=false">
+    <h6 class="mb-0 text-white">Successfully deleted!</h6>
+  </ngb-toast>
+</div>

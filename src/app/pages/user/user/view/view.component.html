@@ -1,0 +1,22 @@
+<div class="container-fluid min-vh-100" *ngIf="user">
+  <div class="row">
+    <div class="col-12">
+      <h2>Welcome! It's great to have you here.</h2>
+      <p>A user detail page typically displays information about a specific user, such as their name, profile picture,
+        bio, contact information, and any other relevant details. The page is designed to give visitors a comprehensive
+        overview of the user's background, skills, experience, and interests.</p>
+      <div class="card">
+        <div class="card-body">
+          <ul class="list-group list-group-flush">
+            <li class="list-group-item px-0"><span class="fw-bold">First Name -</span> {{user.firstName | titlecase}}</li>
+            <li class="list-group-item px-0"><span class="fw-bold">Last Name -</span> {{user.lastName | titlecase}}</li>
+            <li class="list-group-item px-0"><span class="fw-bold">Email -</span> {{user.email}}</li>
+            <li class="list-group-item px-0"><span class="fw-bold">City -</span> {{user.city | titlecase}}</li>
+            <li class="list-group-item px-0"><span class="fw-bold">Mobile Number -</span> {{user.phone}}</li>
+            <li class="list-group-item px-0"><span class="fw-bold">Gender -</span> {{user.gender | titlecase}}</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

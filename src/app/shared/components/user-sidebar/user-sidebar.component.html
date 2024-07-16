@@ -1,0 +1,27 @@
+
+      <div class="sidebar-content d-flex flex-column h-100">
+      <div class="text-center mb-5 p-3">
+        <a class="text-decoration-none m-0 h4 fw-bold" to="/">Dashboard</a>
+      </div>
+      <div class="d-flex align-items-center user-info rounded mb-3 p-3">
+      <div>
+        <img src="https://minimal-kit-react.vercel.app/assets/images/avatars/avatar_default.jpg" class="img-fluid rounded-circle" height="40" width="40" alt="loading"/>
+        </div>
+        <div class="ms-3 fw-semibold">Rajeev Salaria</div>
+      </div>
+      <ul class="nav flex-column">
+        <li class="nav-item" *ngFor="let elm of navService.userMenuItems">
+            <a routerLink="{{elm.path}}" class="nav-link text-dark p-3 rounded" [routerLinkActiveOptions]="{exact:true}" routerLinkActive="fw-bold active" [queryParams]="elm.link=='product' ? { skip:0,max:10 } : null"
+            queryParamsHandling="merge">
+              <span class="me-lg-3 me-2"><img src={{elm.image}} alt="loading"/></span>
+              <span class='text-capitalize small'>{{elm.link}}</span>
+            </a >
+          </li>
+      </ul>
+      <div class="d-flex justify-content-end flex-column flex-grow-1 align-items-center mb-4">
+           <img src="https://minimal-kit-react.vercel.app/assets/illustrations/illustration_avatar.png" height="100" width="100" alt="loading" class="img-fluid"/>
+            <h5 class="fw-semibold">Get more?</h5>
+            <p class="small text-secondary">From only $69</p>
+            <button class="btn btn-primary text-capitalize">upgrade to pro</button>
+      </div>
+    </div>

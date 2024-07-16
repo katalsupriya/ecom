@@ -1,0 +1,115 @@
+<section>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-4 pt-5 vh-100 align-items-center d-flex flex-column justify-content-center">
+                <h3 class="pb-5">Hi, Welcome Back!</h3>
+                <img src="https://minimal-kit-react.vercel.app/assets/illustrations/illustration_login.png"
+                    alt="loading" class="img-fluid">
+            </div>
+            <div class="col-8 bg-light vh-100 align-items-center d-flex flex-column justify-content-center">
+                <div class="row justify-content-center w-100">
+                    <div [ngClass]="isRegister ? 'col-6' : 'col-6'">
+                        <h3 class="mb-3"><ng-container *ngIf="isRegister">Sign In</ng-container>
+                            <ng-container *ngIf="!isRegister">Register here!</ng-container>
+                        </h3>
+                        <p class="small fw-semibold mb-4">
+                            <ng-container *ngIf="isRegister">Don’t have an account? <a class="text-underline"
+                                    role="button" (click)="toggleForm()" queryParams="'{part: 'navbar',search: 'about', year: 2021 }'">Get started</a></ng-container>
+                            <ng-container *ngIf="!isRegister">Already have an account? <a class="text-underline"
+                                    role="button" (click)="toggleForm()">Sign In</a></ng-container>
+                        </p>
+                        <ng-container *ngIf="isRegister">
+                            <div class="mb-4 social-btn d-flex align-items-center justify-content-between gap-2">
+                                <button class="btn border flex-grow-1">
+                                    <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+                                        aria-hidden="true" role="img"
+                                        class="MuiBox-root css-19s7sm0 iconify iconify--eva" width="22" height="22"
+                                        style="color:rgb(223, 62, 48);" viewBox="0 0 24 24">
+                                        <g id="iconifyReact63">
+                                            <g id="iconifyReact64">
+                                                <path id="iconifyReact65" fill="currentColor"
+                                                    d="M17.5 14a5.51 5.51 0 0 1-4.5 3.93a6.15 6.15 0 0 1-7-5.45A6 6 0 0 1 12 6a6.12 6.12 0 0 1 2.27.44a.5.5 0 0 0 .64-.21l1.44-2.65a.52.52 0 0 0-.23-.7A10 10 0 0 0 2 12.29A10.12 10.12 0 0 0 11.57 22A10 10 0 0 0 22 12.52v-2a.51.51 0 0 0-.5-.5h-9a.5.5 0 0 0-.5.5v3a.5.5 0 0 0 .5.5h5">
+                                                </path>
+                                            </g>
+                                        </g>
+                                    </svg>
+                                </button>
+                                <button class="btn border flex-grow-1">
+                                    <svg xmlns="http://www.w3.org/2000/svg" style="color:rgb(24, 119, 242);"
+                                        xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true" role="img"
+                                        class="MuiBox-root css-18qs3yl iconify iconify--eva" width="22" height="22"
+                                        viewBox="0 0 24 24">
+                                        <g id="iconifyReact42">
+                                            <g id="iconifyReact43">
+                                                <path id="iconifyReact44" fill="currentColor"
+                                                    d="M17 3.5a.5.5 0 0 0-.5-.5H14a4.77 4.77 0 0 0-5 4.5v2.7H6.5a.5.5 0 0 0-.5.5v2.6a.5.5 0 0 0 .5.5H9v6.7a.5.5 0 0 0 .5.5h3a.5.5 0 0 0 .5-.5v-6.7h2.62a.5.5 0 0 0 .49-.37l.72-2.6a.5.5 0 0 0-.48-.63H13V7.5a1 1 0 0 1 1-.9h2.5a.5.5 0 0 0 .5-.5Z">
+                                                </path>
+                                            </g>
+                                        </g>
+                                    </svg>
+                                </button>
+                                <button class="btn border flex-grow-1">
+                                    <svg xmlns="http://www.w3.org/2000/svg" color="rgb(28, 156, 234)"
+                                        xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true" role="img"
+                                        class="MuiBox-root css-s1ybfr iconify iconify--eva" width="22" height="22"
+                                        viewBox="0 0 24 24">
+                                        <g id="iconifyReact45">
+                                            <g id="iconifyReact46">
+                                                <path id="iconifyReact47" fill="currentColor"
+                                                    d="M8.08 20A11.07 11.07 0 0 0 19.52 9A8.09 8.09 0 0 0 21 6.16a.44.44 0 0 0-.62-.51a1.88 1.88 0 0 1-2.16-.38a3.89 3.89 0 0 0-5.58-.17A4.13 4.13 0 0 0 11.49 9C8.14 9.2 5.84 7.61 4 5.43a.43.43 0 0 0-.75.24a9.68 9.68 0 0 0 4.6 10.05A6.73 6.73 0 0 1 3.38 18a.45.45 0 0 0-.14.84A11 11 0 0 0 8.08 20">
+                                                </path>
+                                            </g>
+                                        </g>
+                                    </svg>
+                                </button>
+                            </div>
+                            <form [formGroup]="form" (ngSubmit)="onSubmit()">
+                                <div class="row g-4">
+                                    <div class="col-12">
+                                        <input type="email" formControlName="email" class="form-control py-2" placeholder="Email"
+                                            aria-label="Email" [ngClass]="!email?.valid && email?.touched ? 'is-invalid' : ''">
+                                            <small class="text-danger fw-semibold" *ngIf="!email?.valid && email?.touched">Please enter valid email.</small>
+                                    </div>
+                                    <div class="col-12">
+                                        <input type="password" formControlName="password" class="form-control py-2" placeholder="Password"
+                                            aria-label="Password" [ngClass]="!password?.valid && password?.touched ? 'is-invalid' : ''">
+                                            <small class="text-danger fw-semibold" *ngIf="!password?.valid && password?.touched">Password is required field.</small>
+                                    </div>
+                                    <div class="col-12">
+                                        <button class="btn btn-primary" type="submit" [disabled]="isSubmit || !form.valid">
+                                            <ng-container *ngIf="isSubmit">
+                                                <span class="spinner-border spinner-border-sm" role="status"
+                                                    aria-hidden="true"></span>
+                                                Loading...
+                                            </ng-container>
+                                            <ng-container *ngIf="!isSubmit">
+                                                Sign In
+                                            </ng-container>
+                                        </button>
+                                    </div>
+                                </div>
+                            </form>
+                        </ng-container>
+                        <ng-container *ngIf="!isRegister">
+                            <div>
+                                <app-register></app-register>
+                            </div>
+                        </ng-container>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<div *ngIf="isError" class="position-fixed top-0 end-0 shadow m-3">
+<ngb-toast
+	(hide)="isError = false;"
+	[class.bg-danger]="isError"
+     >
+     <h6 class="mb-0 text-white">{{errorMessage}}</h6>
+    </ngb-toast>
+</div>
+
+

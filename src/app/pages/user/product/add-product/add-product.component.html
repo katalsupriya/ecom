@@ -1,0 +1,156 @@
+<div class="container-fluid ps-lg-4">
+  <div class="row">
+    <div class="col-12 py-5">
+      <h3 class="mb-4">Please provide product detail.</h3>
+      <form [formGroup]="form" (ngSubmit)="onSubmit()">
+        <div class="row g-3">
+          <div class="col-12">
+            <label class="form-label fw-semibold" for="title">Title <span class="text-danger">*</span></label>
+            <input type="text" class="form-control py-2" placeholder="title" aria-label="title" formControlName="title"
+              id="title" required>
+            <small class="text-danger fw-semibold" *ngIf="title?.invalid && title?.touched">Title is required
+              field.</small>
+          </div>
+
+          <div class="col-6">
+            <label class="form-label fw-semibold" for="thumbnail">Thumbnail <span class="text-danger">*</span></label>
+            <input type="text" class="form-control py-2" placeholder="thumbnail" aria-label="thumbnail"
+              formControlName="thumbnail" id="thumbnail">
+            <small class="text-danger fw-semibold" *ngIf="thumbnail?.invalid && thumbnail?.touched">Thumbnail is
+              required field.</small>
+          </div>
+
+
+          <div class="col-6">
+            <label class="form-label d-block fw-semibold" for="category">Categories <span
+                class="text-danger">*</span></label>
+            <select class="form-select" id="category" aria-label="Default select example" formControlName="category">
+              <option value="">Select a category</option>
+              <option value="electronic">Electronic</option>
+              <option value="fashion">Fashion</option>
+              <option value="bag">bag</option>
+              <option value="sports">Sports</option>
+            </select>
+          </div>
+
+          <div class="col-6">
+            <label class="form-label d-block fw-semibold" for="brand">Brand<span class="text-danger">*</span></label>
+            <select class="form-select" id="brand" aria-label="Default select example" formControlName="brand">
+              <option value="">Select a brand</option>
+              <option value="hana & morris">Hana & Morris</option>
+              <option value="levish">Levish</option>
+              <option value="gucci">Gucci</option>
+              <option value="h&m">H&M</option>
+              <option value="Nike">Nike</option>
+              <option value="zara">Zara</option>
+              <option value="crepe">Crepe</option>
+              <option value="alisha">Alisha</option>
+              <option value="bala creation">Bala Creation</option>
+              <option value="new ethnic 4 u">New Ethnic 4 U</option>
+              <option value="fashion mania">Fashion Mania</option>
+              <option value="fashion trend">Fashion Trend</option>
+            </select>
+          </div>
+
+          <div class="col-6">
+            <label class="form-label d-block fw-semibold" for="ideal">Ideal for<span
+                class="text-danger">*</span></label>
+            <select class="form-select" id="ideal" aria-label="Default select example" formControlName="ideal">
+              <option value="">Select an ideal</option>
+              <option value="men">Men</option>
+              <option value="women">Women</option>
+              <option value="boy">Boy</option>
+              <option value="girl">Girl</option>
+            </select>
+          </div>
+
+          <div class="col-6">
+            <label class="form-label d-block fw-semibold" for="wash">Wash Care<span class="text-danger">*</span></label>
+            <select class="form-select" id="wash" aria-label="Default select example" formControlName="washType">
+              <option value="">Select Wash Type</option>
+              <option value="hand wash">Hand Wash</option>
+              <option value="bleach">Bleach</option>
+              <option value="detergent">Detergent</option>
+            </select>
+          </div>
+
+          <div class="col-6">
+            <label class="form-label d-block fw-semibold" for="color">Color<span class="text-danger">*</span></label>
+            <select class="form-select" id="color" aria-label="Default select example" formControlName="color">
+              <option value="">Select Color</option>
+              <option value="red">Red</option>
+              <option value="green">Green</option>
+              <option value="white">White</option>
+              <option value="black">Black</option>
+              <option value="multi">Multi</option>
+            </select>
+          </div>
+
+          <div class="col-6">
+            <label class="form-label d-block fw-semibold" for="wearType">Wear Type<span
+                class="text-danger">*</span></label>
+            <select class="form-select" id="wearType" aria-label="Default select example" formControlName="wearType">
+              <option value="">Select Wear Type</option>
+              <option value="party">Party</option>
+              <option value="regular">Regular</option>
+              <option value="casual">Casual</option>
+            </select>
+          </div>
+
+          <div class="col-6">
+            <label class="form-label d-block fw-semibold" for="sleevesLength">Sleeves Length<span
+                class="text-danger">*</span></label>
+            <select class="form-select" id="sleevesLength" aria-label="Default select example"
+              formControlName="sleevesLength">
+              <option value="">Select Sleeves Length</option>
+              <option value="half">Half</option>
+              <option value="full">Full</option>
+            </select>
+          </div>
+
+          <div class="col-6">
+            <label class="form-label fw-semibold" for="price">Price <span class="text-danger">*</span></label>
+            <input type="number" class="form-control py-2" placeholder="price" aria-label="price"
+              formControlName="price" id="price">
+            <small class="text-danger fw-semibold" *ngIf="price?.invalid && price?.touched">Price is required
+              field.</small>
+          </div>
+          <div class="col-6">
+            <label class="form-label fw-semibold" for="quantity">Quantity <span class="text-danger">*</span></label>
+            <input type="number" class="form-control py-2" placeholder="quantity" aria-label="quantity"
+              formControlName="stock" id="quantity">
+            <small class="text-danger fw-semibold" *ngIf="stock?.invalid && stock?.touched">Quantity is required
+              field.</small>
+          </div>
+
+          <div formArrayName="images" class="col-12">
+            <div *ngFor="let alias of images.controls; let i=index" class="mb-3">
+              <label class="form-label d-block fw-semibold" for="alias-{{ i }}">Images <span class="text-danger"
+                  *ngIf="i ===0">*</span></label>
+              <input id="alias-{{ i }}" type="text" [formControlName]="i" class="form-control" placeholder="URL">
+              <small class="text-danger fw-semibold" *ngIf="i===0 && getValidity(i)">Path is required field.</small>
+              <button type="button" class="btn btn-danger btn-sm mt-3 ms-auto d-block"
+                *ngIf="i !==0 && images.length > 1" (click)="removeAlias(i)">Remove Field</button>
+            </div>
+            <div class="d-block text-end">
+              <button type="button" class="btn btn-primary btn-sm mt-2" (click)="addAlias()">+ Add
+                Another</button>
+            </div>
+          </div>
+
+          <div class="col-12">
+            <label class="form-label d-block fw-semibold" for="description">Description <span
+                class="text-danger">*</span></label>
+            <textarea class="form-control" placeholder="Please fill the description." id="description"
+              formControlName="description" rows="3"></textarea>
+            <small class="text-danger fw-semibold" *ngIf="description?.invalid && description?.touched">Description is
+              required field.</small>
+          </div>
+          <div class="col-12 text-end">
+            <button type="submit" class="btn btn-success" [disabled]="!form.valid">Submit</button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
